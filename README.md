@@ -3,5 +3,5 @@
 ### Create new go template
 
 ```
-npx degit jezzs2k/hvt-go-template <project-name>
+npx degit hieu-vt/go-template/template <project-name>
 ```
