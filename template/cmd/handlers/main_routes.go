@@ -3,7 +3,7 @@ package handlers
 import (
 	goservice "github.com/200Lab-Education/go-sdk"
 	"github.com/gin-gonic/gin"
-	"go-template/common"
+	"go-template/template/common"
 	"net/http"
 )
 

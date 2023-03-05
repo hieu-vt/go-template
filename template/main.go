@@ -1,7 +1,7 @@
 package main
 
 import (
-	"go-template/cmd"
+	"go-template/template/cmd"
 )
 
 func main() {

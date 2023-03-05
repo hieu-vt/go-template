@@ -6,8 +6,8 @@ import (
 	"fmt"
 	goservice "github.com/200Lab-Education/go-sdk"
 	"github.com/gin-gonic/gin"
-	"go-template/common"
-	auth "go-template/proto/authen"
+	common2 "go-template/template/common"
+	auth2 "go-template/template/proto/authen"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"strings"
@@ -18,7 +18,7 @@ type authClient struct {
 	url         string
 	gwSupported bool
 	gwPort      int
-	client      auth.AuthServiceClient
+	client      auth2.AuthServiceClient
 }
 
 func NewAuthClient(prefix string) *authClient {
@@ -52,7 +52,7 @@ func (uc *authClient) Configure() error {
 		return err
 	}
 
-	uc.client = auth.NewAuthServiceClient(cc)
+	uc.client = auth2.NewAuthServiceClient(cc)
 
 	return nil
 }
@@ -70,8 +70,8 @@ func (uc *authClient) Stop() <-chan bool {
 	return c
 }
 
-func ErrWrongAuthHeader(err error) *common.AppError {
-	return common.NewCustomError(
+func ErrWrongAuthHeader(err error) *common2.AppError {
+	return common2.NewCustomError(
 		err,
 		fmt.Sprintf("wrong authen header"),
 		fmt.Sprintf("ErrWrongAuthHeader"),
@@ -97,19 +97,19 @@ func (uc *authClient) RequiredAuth(sc goservice.ServiceContext) func(c *gin.Cont
 			panic(err)
 		}
 
-		aRes, err := uc.client.MiddlewareAuthorize(c.Request.Context(), &auth.AuthRequest{Token: token})
+		aRes, err := uc.client.MiddlewareAuthorize(c.Request.Context(), &auth2.AuthRequest{Token: token})
 
 		if err != nil {
-			panic(common.ErrNoPermission(err))
+			panic(common2.ErrNoPermission(err))
 		}
 
 		user := aRes.User
 
 		if user.Status == 0 || user.Id <= 0 {
-			panic(common.ErrNoPermission(errors.New("user has been deleted or banned")))
+			panic(common2.ErrNoPermission(errors.New("user has been deleted or banned")))
 		}
 
-		c.Set(common.CurrentUser, &common.User{
+		c.Set(common2.CurrentUser, &common2.User{
 			Id:    int(user.Id),
 			Email: user.Email,
 			Role:  "",

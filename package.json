@@ -1,0 +1,23 @@
+{
+  "name": "hvt-go-template",
+  "version": "1.0.0",
+  "description": "go-template",
+  "main": "main.go",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hieu-vt/go-template.git"
+  },
+  "author": "hieuvt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hieu-vt/go-template/issues"
+  },
+  "homepage": "https://github.com/hieu-vt/go-template#readme",
+  "keywords": [
+    "go",
+    "template"
+  ]
+}

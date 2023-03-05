@@ -4,8 +4,8 @@ import (
 	"context"
 	"flag"
 	"github.com/200Lab-Education/go-sdk/logger"
-	"go-template/common"
-	"go-template/proto/user"
+	common2 "go-template/template/common"
+	user2 "go-template/template/proto/user"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
@@ -15,7 +15,7 @@ type userClient struct {
 	url         string
 	gwSupported bool
 	gwPort      int
-	client      user.UserServiceClient
+	client      user2.UserServiceClient
 }
 
 func NewUserClient(prefix string) *userClient {
@@ -49,7 +49,7 @@ func (uc *userClient) Configure() error {
 		return err
 	}
 
-	uc.client = user.NewUserServiceClient(cc)
+	uc.client = user2.NewUserServiceClient(cc)
 
 	return nil
 }
@@ -67,7 +67,7 @@ func (uc *userClient) Stop() <-chan bool {
 	return c
 }
 
-func (uc *userClient) GetUsers(ctx context.Context, ids []int) ([]common.SimpleUser, error) {
+func (uc *userClient) GetUsers(ctx context.Context, ids []int) ([]common2.SimpleUser, error) {
 	logger.GetCurrent().GetLogger(uc.prefix).Infoln("GetUsers grpc store running")
 
 	userIds := make([]int32, len(ids))
@@ -76,18 +76,18 @@ func (uc *userClient) GetUsers(ctx context.Context, ids []int) ([]common.SimpleU
 		userIds[i] = int32(ids[i])
 	}
 
-	rs, err := uc.client.GetUserByIds(ctx, &user.UserRequest{UserIds: userIds})
+	rs, err := uc.client.GetUserByIds(ctx, &user2.UserRequest{UserIds: userIds})
 
 	if err != nil {
-		return nil, common.ErrDB(err)
+		return nil, common2.ErrDB(err)
 	}
 
-	users := make([]common.SimpleUser, len(rs.Users))
+	users := make([]common2.SimpleUser, len(rs.Users))
 
 	for i, item := range rs.Users {
 
-		users[i] = common.SimpleUser{
-			SqlModel: common.SqlModel{
+		users[i] = common2.SimpleUser{
+			SqlModel: common2.SqlModel{
 				Id: int(item.Id),
 			},
 			FirstName: item.FirstName,

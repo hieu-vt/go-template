@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
-	"go-template/common"
+	"go-template/template/common"
 )
 
 func Recover() gin.HandlerFunc {

@@ -5,11 +5,11 @@ import (
 	goservice "github.com/200Lab-Education/go-sdk"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
-	"go-template/cmd/handlers"
-	"go-template/common"
-	"go-template/middleware"
-	appgrpc "go-template/plugin/grpc"
-	"go-template/plugin/sdkgorm"
+	"go-template/template/cmd/handlers"
+	"go-template/template/common"
+	"go-template/template/middleware"
+	appgrpc2 "go-template/template/plugin/grpc"
+	"go-template/template/plugin/sdkgorm"
 	"os"
 )
 
@@ -18,8 +18,8 @@ func newService() goservice.Service {
 		goservice.WithName("food-delivery-cart-categories"),
 		goservice.WithVersion("1.0.0"),
 		goservice.WithInitRunnable(sdkgorm.NewGormDB("main", common.DBMain)),
-		goservice.WithInitRunnable(appgrpc.NewAuthClient(common.PluginGrpcAuthClient)),
-		goservice.WithInitRunnable(appgrpc.NewUserClient(common.PluginGrpcUserClient)),
+		goservice.WithInitRunnable(appgrpc2.NewAuthClient(common.PluginGrpcAuthClient)),
+		goservice.WithInitRunnable(appgrpc2.NewUserClient(common.PluginGrpcUserClient)),
 	)
 
 	return service
