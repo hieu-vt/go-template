@@ -4,7 +4,7 @@ import (
 	"errors"
 	"flag"
 	"github.com/200Lab-Education/go-sdk/logger"
-	gormdialects2 "go-template/template/plugin/sdkgorm/gormdialects"
+	"go-template/plugin/sdkgorm/gormdialects"
 	"gorm.io/gorm"
 	"strings"
 	"sync"
@@ -137,13 +137,13 @@ func getDBType(dbType string) GormDBType {
 func (gdb *gormDB) getDBConn(t GormDBType) (dbConn *gorm.DB, err error) {
 	switch t {
 	case GormDBTypeMySQL:
-		return gormdialects2.MySqlDB(gdb.Uri)
+		return gormdialects.MySqlDB(gdb.Uri)
 	case GormDBTypePostgres:
-		return gormdialects2.PostgresDB(gdb.Uri)
+		return gormdialects.PostgresDB(gdb.Uri)
 	case GormDBTypeSQLite:
-		return gormdialects2.SQLiteDB(gdb.Uri)
+		return gormdialects.SQLiteDB(gdb.Uri)
 	case GormDBTypeMSSQL:
-		return gormdialects2.MSSqlDB(gdb.Uri)
+		return gormdialects.MSSqlDB(gdb.Uri)
 	}
 
 	return nil, nil
