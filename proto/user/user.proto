@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package userproto;
+
+option go_package = "user/";
+
+message UserRequest {
+  repeated int32 userIds = 1;
+}
+
+message User {
+  int32 id = 1;
+  string firstName  = 2;
+  string lastName = 3;
+  string role = 4;
+}
+
+message UserResponse {
+  repeated User users = 1;
+}
+
+service UserService {
+  rpc GetUserByIds(UserRequest) returns (UserResponse){
+  };
+}
