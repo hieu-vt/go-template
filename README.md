@@ -1,4 +1,4 @@
-## Go template (hvt)
+## Go template from (hieu-vt)
 
 ### Create new go template
 
