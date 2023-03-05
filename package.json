@@ -19,5 +19,6 @@
   "keywords": [
     "go",
     "template"
-  ]
+  ],
+  "files": ["template"]
 }

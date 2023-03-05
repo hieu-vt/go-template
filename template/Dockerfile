@@ -2,7 +2,7 @@ FROM golang:latest as builder
 
 RUN mkdir /app
 
-ADD .. /app
+ADD ../.. /app
 
 WORKDIR /app
 

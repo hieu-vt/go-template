@@ -3,14 +3,5 @@
   "description": "go-template",
   "repository": "https://github.com/hieu-vt/go-template.git",
   "author": "hieuvt",
-  "files": [
-    {
-      "template": "main.go",
-      "target": "src/main.go"
-    },
-    {
-      "template": "README.md",
-      "target": "README.md"
-    }
-  ]
+  "files": ["template"]
 }
