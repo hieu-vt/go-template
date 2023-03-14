@@ -24,3 +24,6 @@ npx degit hieu-vt/go-template/template <project-name>
   Run the command `go mod edit -module <project-name>` to update your module to use **_<project-name>_** as the module name.
 - 8:
   Run the command `go mod tidy` to clean up the module and update its dependencies.
+
+
+*This template for myself 😸🦊🐷*
