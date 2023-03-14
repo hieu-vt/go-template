@@ -12,6 +12,7 @@ message User {
   string phone = 2;
   int32 id = 3;
   int32 Status = 4;
+  string Role = 5;
 }
 
 message AuthResponse {
